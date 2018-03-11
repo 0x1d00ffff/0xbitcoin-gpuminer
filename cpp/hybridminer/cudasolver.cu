@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string.h>
 
+#include <process.h>
+//#include <time.h>  // I didn't need this, but I expected to. Someone else may. 
+
 //we will need this!
 #include "cuda_sha3.cu"
 
@@ -77,6 +80,12 @@ m_buffer_ready( false ),
 m_target_ready( false ),
 m_updated_gpu_inputs( false )
 {
+  /* time is only 1-second resolition. bullshit. */
+  int now = (int)time( 0 );
+  printf( "current time is %d.\n", now );
+  srand((now & 0xFFFF) | (_getpid() << 16));
+  cnt = ((unsigned long long)rand()) << 32 | rand();
+  printf( "cnt is now %lld.\n", cnt );
 }
 
 void CUDASolver::setAddress( std::string const& addr )

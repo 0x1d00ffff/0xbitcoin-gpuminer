@@ -470,7 +470,7 @@ __host__ unsigned long long getHashCount()
 }
 __host__ void resetHashCount()
 {
-  cnt = 0;
+  //cnt = 0;
   printable_hashrate_cnt = 0;
 }
 
